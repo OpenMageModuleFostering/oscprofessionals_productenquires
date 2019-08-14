@@ -62,7 +62,7 @@
                 <class>Oscprofessionals_ProductEnquiry_Model_Resource</class>
                 <entities>
                     <productenquiry>
-                        <table>productenquiry</table>
+                        <table>product_enquiry</table>
                     </productenquiry>
                 </entities>
             </oscpproductenquiry_resource>

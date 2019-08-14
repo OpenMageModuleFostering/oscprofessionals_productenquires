@@ -26,10 +26,7 @@ class Oscprofessionals_ProductEnquiry_AccountController extends Mage_Customer_Ac
      */
     public function loginAction()
     {
-       // $controllerName = Mage::app()->getFrontController()->getRequest()->getPost('controller_name', '');
-
-		//print_r(Mage::app()->getRequest()->getControllerName());exit;
-
+      
         if(Mage::app()->getRequest()->getParam('type') == 'enquiry'){
 			$request["url"] = $this->getRequest()->getServer('HTTP_REFERER');		
             Mage::getSingleton('core/session')->setLastRequest($request["url"]);
@@ -88,7 +85,7 @@ class Oscprofessionals_ProductEnquiry_AccountController extends Mage_Customer_Ac
             }
         }
 		$redirectUrl=Mage::getSingleton('core/session')->getLastRequest();
-		//print_r($redirectUrl);exit;
+
 	    if($redirectUrl){
 			$this->_redirectUrl($redirectUrl);
 		    Mage::getSingleton('core/session')->unsLastRequest();

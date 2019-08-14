@@ -101,7 +101,6 @@ class Oscprofessionals_ProductEnquiry_IndexController extends Mage_Core_Controll
 
 
             $mailTemplate = Mage::getModel('core/email_template');
-			echo __line__;
 
             $mailTemplate->setDesignConfig(array('area' => 'frontend'))
                     ->setReplyTo($post['email'])
@@ -112,11 +111,10 @@ class Oscprofessionals_ProductEnquiry_IndexController extends Mage_Core_Controll
             Mage::getSingleton('core/session')->addSuccess(Mage::helper('oscpproductenquiry')->__('Your question was submitted and will be responded to as soon as possible. Thank you for contacting us.'));
 
             $this->_redirectUrl(Mage::getBaseUrl() . "productenquiry/index/index/id/" . $post['product_id']);
-			
+
             return;
         } catch (Exception $e) {
-			echo $e;
-			exit;
+
             $translate->setTranslateInline(true);
             Mage::getSingleton('core/session')->addError(Mage::helper('oscpproductenquiry')->__('Unable to submit your request. Please, check all required fields'));
             $this->_redirectUrl(Mage::getBaseUrl() . 'productenquiry?id=' . $post['product_id']);

@@ -21,23 +21,21 @@ class Oscprofessionals_ProductEnquiry_Helper_Data extends Mage_Core_Helper_Abstr
      */
     public function getEnquiryDetails($productId) 
     {
-        $productenquiryData = array();
-        $collection = Mage::getModel('oscpproductenquiry/productenquiry')->getCollection()
-                ->addFieldToSelect('question')
-                ->addFieldToSelect('is_approved')
-                ->addFieldToSelect('product_id')
-                ->addFieldToSelect('name')
-                ->addFieldToSelect('email')
-                ->addFieldToSelect('product_name')
-                ->addFieldToSelect('comment')
-                ->addFieldToSelect('created_at')
-                ->addFieldToSelect('updated_at')
-                ->addFieldToFilter('is_approved',array('eq' => 1))
-			    ->addFieldToFilter('product_id',array('eq' => $productId))
-                ->setOrder('updated_at', 'DESC');
-        $collection->getSelect()->limit(Mage::getStoreConfig(self::XML_PATH_ENQUIRY_NUMBER));
+        if($productId){
+            return Mage::getModel('oscpproductenquiry/productenquiry')->getProductEnquiryDetails($productId);
+        }else {
+            return null;
+        }
+    }
 
-        return $collection;
+    /**
+     * Check module is enable or not
+     *
+     */
+    public function getEnable() 
+    {
+
+        return Mage::getStoreConfig(self::XML_PATH_ENABLE);
     }
 
     /**
@@ -46,13 +44,16 @@ class Oscprofessionals_ProductEnquiry_Helper_Data extends Mage_Core_Helper_Abstr
      */
     public function getEnquiryCount($productId) 
     {
-
-        $collection = Mage::getModel('oscpproductenquiry/productenquiry')->getCollection()
+        if($productId){
+            $collection = Mage::getModel('oscpproductenquiry/productenquiry')->getCollection()
                 ->addFieldToFilter('product_id', array('eq' => $productId))
                 ->addFieldToFilter('is_approved', array('eq' => 1));
 
-        $enquiryCount = $collection->getSize();
-        return $enquiryCount;
+            $enquiryCount = $collection->getSize();
+            return $enquiryCount;
+        }else {
+            return $enquiryCount=null;
+        }
     }
 
     /**
@@ -62,9 +63,32 @@ class Oscprofessionals_ProductEnquiry_Helper_Data extends Mage_Core_Helper_Abstr
      */
     public function getProduct($productId) 
     {
-        $collection = Mage::getModel('catalog/product')->load($productId);
-        return $collection;
+        if($productId){
+            $collection = Mage::getModel('catalog/product')->load($productId);
+            return $collection;
+        }else {
+            return $collection=null;
+        }
     }
 
+    /**
+     * return module version 
+     *
+     */
+    public function getExtensionVersion()
+	{
+		return (string) Mage::getConfig()->getNode()->modules->Oscprofessionals_ProductEnquiry->version;
+	}
+    
+     /**
+     * return product url 
+     *
+     */
+    public function getProductUrl($productId)
+    {
+           
+      $product = Mage::getModel('catalog/product')->load($productId);
+      return $product->getUrl();
+    }
   
 }
