@@ -35,7 +35,7 @@ class Oscprofessionals_ProductEnquiry_Block_ProductEnquiry extends Mage_Core_Blo
 
         $breadcrumbs->addCrumb('product', array('label' => $productName, 'title' => $productName, 'link' => $product->getProductUrl()));
 
-        $breadcrumbs->addCrumb('enquiry', array('label' => 'Ask a Question', 'title' => 'Ask a Question'));
+        $breadcrumbs->addCrumb('enquiry', array('label' => $this->__('Ask a Question') , 'title' => $this->__('Ask a Question')));
 
         $this->getLayout()->getBlock('breadcrumbs')->toHtml();
 

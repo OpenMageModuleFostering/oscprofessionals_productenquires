@@ -11,7 +11,7 @@
 <config>
     <modules>
         <Oscprofessionals_ProductEnquiry>
-            <version>1.0.2</version>
+            <version>1.1.0</version>
         </Oscprofessionals_ProductEnquiry>
     </modules>
     <frontend>
@@ -31,6 +31,15 @@
                 </productenquiry>
             </updates>
         </layout>
+        <translate>
+            <modules>
+                <Oscprofessionals_ProductEnquiry>
+                    <files>
+                        <default>Oscprofessionals_ProductEnquiry.csv</default>
+                    </files>
+                </Oscprofessionals_ProductEnquiry>
+            </modules>
+        </translate>
     </frontend>  
     <admin>
         <routers>
