@@ -15,7 +15,8 @@
 <?php
 $_id = explode("/", $this->getRequest()->getParam('id'));
 $_product = $this->helper('oscpproductenquiry')->getProduct($_id[0]);
-$_productName=$_product->getName();?>
+$_productName=$_product->getName();
+?>
 <?php
 $_breadcrumbs = $this->getLayout()->getBlock('breadcrumbs');
 $_breadcrumbs->addCrumb('home', array('label'=>Mage::helper('cms')->__('Home'), 'title'=>Mage::helper('cms')->__('Home Page'), 'link'=>Mage::getBaseUrl()));
@@ -52,7 +53,7 @@ echo $this->getLayout()->getBlock('breadcrumbs')->toHtml();
                 <div class="field">
                     <label for="question" class="text required"><?php echo Mage::helper('oscpproductenquiry')->__('Question') ?><em>*</em></label>
                     <div class="input-box">
-                        <textarea name="question" id="question" title="<?php echo Mage::helper('oscpproductenquiry')->__('Question') ?>" class="required-entry input-text" style="width: 485px; height: 110px;"></textarea>
+                        <textarea name="question" id="question" title="<?php echo Mage::helper('oscpproductenquiry')->__('Question') ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
                     </div>
                 </div>
             </div>

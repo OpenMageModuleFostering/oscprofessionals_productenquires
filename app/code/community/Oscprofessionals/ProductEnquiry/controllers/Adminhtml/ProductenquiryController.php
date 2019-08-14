@@ -44,7 +44,6 @@ class Oscprofessionals_ProductEnquiry_Adminhtml_ProductenquiryController extends
         $id = $this->getRequest()->getParam('id');
         $model = Mage::getModel('oscpproductenquiry/productenquiry')->load($id);
 
-
         if ($model->getId() || $id == 0) {
             $data = Mage::getSingleton('adminhtml/session')->getFormData(true);
             if (!empty($data)) {
@@ -223,5 +222,4 @@ class Oscprofessionals_ProductEnquiry_Adminhtml_ProductenquiryController extends
                 $this->getLayout()->createBlock('oscpproductenquiry/adminhtml_productenquiry_edit_tab_product')->toHtml()
         );
     }
-
 }

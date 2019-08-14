@@ -11,7 +11,7 @@
 <config>
     <modules>
         <Oscprofessionals_ProductEnquiry>
-            <version>1.0.1</version>
+            <version>1.0.2</version>
         </Oscprofessionals_ProductEnquiry>
     </modules>
     <frontend>
@@ -62,7 +62,7 @@
                 <class>Oscprofessionals_ProductEnquiry_Model_Resource</class>
                 <entities>
                     <productenquiry>
-                        <table>productenquiry</table>
+                        <table>product_enquiry</table>
                     </productenquiry>
                 </entities>
             </oscpproductenquiry_resource>
@@ -99,7 +99,7 @@
         </helpers>
         <template>
             <email>
-                <productenquiry_email_email_template translate="label" module="productenquiry">
+                <productenquiry_email_email_template translate="label" module="oscpproductenquiry">
                     <label>Product Enquiry Form</label>
                     <file>oscprofessionals/productenquiry.html</file>
                     <type>html</type>

@@ -16,6 +16,4 @@ class Oscprofessionals_ProductEnquiry_Model_Resource_Productenquiry extends Mage
        
         $this->_init('oscpproductenquiry/productenquiry', 'model_id');
     }
-
-    
 }

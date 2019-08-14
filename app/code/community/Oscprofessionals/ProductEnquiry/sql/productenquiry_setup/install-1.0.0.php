@@ -11,8 +11,8 @@ $installer = $this;
 
 $installer->startSetup();
 $installer->run("
-DROP TABLE IF EXISTS `{$installer->getTable('productenquiry')}`;
-CREATE TABLE `{$installer->getTable('productenquiry')}` (
+DROP TABLE IF EXISTS `{$installer->getTable('product_enquiry')}`;
+CREATE TABLE `{$installer->getTable('product_enquiry')}` (
   `model_id` int(11) unsigned NOT NULL auto_increment COMMENT 'Model ID',
   `product_id` int(11) default NULL,
   `name` varchar(50) default NULL,
