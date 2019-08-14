@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/Oscprofessionals_ProductEnquires",
+    "type": "magento-module",
+    "license": "Open-Software-License-(OSL)",
+    "homepage": "",
+    "description": "While buying product online, mostly customers have many doubt and questions and no one is present there physically to answer their questions, many customer do not prefer to purchase the product if they have any doubt regarding the product. Thus to resolve this problem, product Enquiry extension is used.",
+    "authors": [
+    {
+        "name": "Satish Mantri",
+        "email": "satish@oscprofessionals.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}

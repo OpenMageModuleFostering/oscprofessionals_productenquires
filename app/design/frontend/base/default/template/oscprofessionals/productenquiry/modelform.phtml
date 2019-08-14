@@ -1,0 +1,110 @@
+<?php
+/**
+ *
+ * @category   Oscprofessionals
+ * @package    Oscprofessionals_ProductEnquiry
+ * @author     Oscprofessionals Team<oscpteam@oscprofessionals.com>
+ *
+ */
+?>
+<?php $_loginStatus = Mage::getSingleton('customer/session')->isLoggedIn(); ?>
+<?php if ($_loginStatus) : ?>
+    <?php /* Get the customer data */ ?>
+    <?php $_customer = Mage::getSingleton('customer/session')->getCustomer(); ?>
+<?php endif; ?>
+<?php
+$_id = explode("/", $this->getRequest()->getParam('id'));
+$_product = $this->helper('oscpproductenquiry')->getProduct($_id[0]);
+$_productName=$_product->getName();?>
+<?php
+$_breadcrumbs = $this->getLayout()->getBlock('breadcrumbs');
+$_breadcrumbs->addCrumb('home', array('label'=>Mage::helper('cms')->__('Home'), 'title'=>Mage::helper('cms')->__('Home Page'), 'link'=>Mage::getBaseUrl()));
+$_breadcrumbs->addCrumb('product', array('label'=>$_productName, 'title'=>$_productName, 'link'=>$_product->getProductUrl()));
+$_breadcrumbs->addCrumb('enquiry', array('label'=>'Ask a Question', 'title'=>'Ask a Question'));
+echo $this->getLayout()->getBlock('breadcrumbs')->toHtml();
+?>
+<?php $_productEnquiry= Mage::helper('oscpproductenquiry')->getEnquiryDetails($_id[0]);?>
+<div class="product-enq-block">
+    <form action="<?php echo $this->getUrl('productenquiry/index/post/');?>" id="modelForm" name="modelForm" method="post" enctype="multipart/form-data">
+        <div class="product-enq-title">
+            <h1><?php echo $this->__('You are asking a Question About :');?>
+            <?php echo $_product->getName();?>
+            </h1>
+            <p><?php echo $this->__('We&apos;re here to help. We&apos;ll post it on this product page once our review team gives it the go-ahead.');?>
+            </p>
+            <input type="hidden" name="product_id" value="<?php echo $_id[0];?>"/>
+            <input type="hidden" name="product_name" value="<?php echo $_productName;?>"/>
+        </div>
+        <div class="other-content ">
+            <div class="contact-details">
+                <div class="field">
+                    <label for="name" class="text required"><?php echo Mage::helper('oscpproductenquiry')->__('Name') ?><em>*</em></label>
+                    <div class="input-box">
+                    <input name="name" id="name" value="<?php if ($_loginStatus): ?><?php echo $this->htmlEscape($_customer->getFirstname()); ?><?php else: ?><?php echo $this->htmlEscape(''); ?><?php endif ?>" title="<?php echo Mage::helper('oscpproductenquiry')->__('Name') ?>" class="input-text required-entry" type="text"  />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="email" class="required"><?php echo Mage::helper('oscpproductenquiry')->__('Email Address') ?><em>*</em></label>
+                    <div class="input-box">
+                        <input name="email" id="email" value="<?php if ($_loginStatus): ?><?php echo $this->htmlEscape($_customer->getEmail()); ?><?php else: ?><?php echo $this->htmlEscape(''); ?><?php endif ?>" title="<?php echo Mage::helper('oscpproductenquiry')->__('Email Address ') ?>" class="input-text required-entry validate-email" type="text" />
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="question" class="text required"><?php echo Mage::helper('oscpproductenquiry')->__('Question') ?><em>*</em></label>
+                    <div class="input-box">
+                        <textarea name="question" id="question" title="<?php echo Mage::helper('oscpproductenquiry')->__('Question') ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="button-set">
+                <button type="submit" title="<?php echo Mage::helper('oscpproductenquiry')->__('Send Question') ?>" class="button"><span><span><?php echo Mage::helper('oscpproductenquiry')->__('Send Question') ?></span></span></button>
+            </div>
+            <p class="required"><span>*</span><?php echo Mage::helper('oscpproductenquiry')->__('Required fields') ?></p>
+            <div style="clear:both; height:0;"></div>
+        </div>
+    </form>
+</div>
+<div class="upsell-block">
+<?php $upsell_product = $_product->getUpSellProductCollection()->addStoreFilter();
+$count = count($upsell_product);?>
+    <div class="box-collateral box-up-sell">
+        <div class="box-title">
+        <?php if($count): ?>
+            <h2><?php echo $this->__('Customers Also Bought') ?></h2>
+        <?php endif; ?>
+        </div>
+        <ul class="products-grid">
+            <?php $i=0;
+            $_counter=0;
+            foreach ($upsell_product as $_upsell): ?>	
+                <?php
+                if($_counter>2):
+                break;?>
+            <?php endif; ?>
+            <li class="item<?php if (($i - 1) % $this->getColumnCount() == 0):?> first<?php elseif ($i % $this->getColumnCount() == 0):?> last<?php endif;?>">
+                <?php
+                $upsp = $this->helper('oscpproductenquiry')->getProduct($_upsell->getId());?>
+                <a href="<?php echo $upsp->getProductUrl() ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($upsp, 'small_image')->resize(148) ?>" alt="<?php echo $this->escapeHtml($upsp->getName()) ?>" title="<?php echo $this->escapeHtml($upsp->getName()) ?>" /></a>
+            </li>
+            <?php $_counter++; ?>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
+<script type="text/javascript">
+//<![CDATA[
+var modelForm = new VarienForm('modelForm', true);
+//]]>
+</script>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+productbreadcrumb();
+});
+function productbreadcrumb() {
+var bread = jQuery('.breadcrumbs').html();
+jQuery('.breadcrumbs').remove();
+jQuery('.delivery-icons').before('<div class="breadcrumbs">'+bread+'</div>');
+}
+//]]>
+</script>

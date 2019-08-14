@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * @category   Oscprofessionals
+ * @package    Oscprofessionals_ProductEnquiry
+ * @author     Oscprofessionals Team<oscpteam@oscprofessionals.com>
+ *
+ */
+-->
+<config>
+    <menu>
+        <productenquiry module="oscpproductenquiry">
+            <title>Product Enquiry</title>
+            <sort_order>71</sort_order>
+            <action>productenquiry/adminhtml_productenquiry</action> 
+            <children>
+                <products translate="title" module="oscpproductenquiry">
+                    <title>Product Enquiry</title>
+                    <sort_order>1</sort_order>
+                    <action>productenquiry/adminhtml_productenquiry</action>
+                </products>
+                <productenquiry_conf translate="title" module="oscpproductenquiry">
+                    <title>Settings</title>
+                    <sort_order>2</sort_order>
+                    <action>adminhtml/system_config/edit/section/productenquiry</action>
+                </productenquiry_conf>
+            </children>	 
+        </productenquiry>   
+    </menu> 
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <productenquiry translate="title" module="oscpproductenquiry">
+                        <title>Productenquiry</title>
+                        <children>
+                            <productenquiry translate="title" module="oscpproductenquiry">
+                                <title>Productenquiry</title>
+                                <sort_order>30</sort_order>
+                            </productenquiry>
+                        </children>
+                    </productenquiry>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <productenquiry translate="title" module="oscpproductenquiry">
+                                        <title>Oscprofessionals Product Enquiry</title>
+                                    </productenquiry>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

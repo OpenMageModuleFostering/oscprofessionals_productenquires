@@ -1,0 +1,15 @@
+.ask-question-post .cust-name {
+    color: #3085c7;
+    font-weight: bold;
+    margin: 10px 0;
+}
+.cust-name .date {
+    color: #a2a2a2;
+    font-size: 12px;
+    font-weight: normal;
+    margin: 0 0 0 20px;
+}
+.ask-question-post .comment {
+    color: #a2a2a2;
+    font-weight: bold;
+}

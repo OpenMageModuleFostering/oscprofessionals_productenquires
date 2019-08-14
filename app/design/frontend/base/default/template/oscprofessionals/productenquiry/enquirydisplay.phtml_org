@@ -1,0 +1,41 @@
+<?php
+/**
+ *
+ * @category   Oscprofessionals
+ * @package    Oscprofessionals_ProductEnquiry
+ * @author     Oscprofessionals Team<oscpteam@oscprofessionals.com>
+ *
+ */
+?>
+<?php $_customer = Mage::getSingleton('customer/session')->isLoggedIn();?>
+<?php $_customerId = Mage::helper('customer')->getCustomer()->getId();?>
+<?php $_customerName = Mage::helper('customer')->getCustomerName();?>
+<?php $_currentProduct = Mage::registry('current_product'); ?>
+<?php $_productId = $_currentProduct->getId(); ?>
+<div class="collapsible mobile-collapsible">
+    <h1 class="block-title heading"><?php echo $this->__('Questions About :'); ?>
+        <?php echo $_productName = $_currentProduct->getName(); ?>
+        <span><?php $_enquiryCount = Mage::helper('oscpproductenquiry')->getEnquiryCount($_productId); ?>
+            <?php echo '(' . $_enquiryCount . ')'; ?></span>
+    </h1>
+    <div class="block-content">
+        <p><?php echo $this->__('We\'re here to help: to ask a question click'); ?>&nbsp;<a href="<?php if ($_customer): ?><?php echo $this->getUrl("productenquiry/index/index/", array('id' => $_productId)) ?><?php else: ?><?php echo $this->getUrl("customer/account/login/"); ?><?php endif; ?>"><?php echo $this->__('here'); ?></a><?php echo $this->__('. We\'ll post it on this page once our review team gives it the go-ahead.'); ?></p>
+        <input type="hidden" value="<?php $_currentProduct->getId(); ?>"/>
+        <?php $_productEnquiry = Mage::helper('oscpproductenquiry')->getEnquiryDetails($_productId);?>
+
+        <?php foreach ($_productEnquiry as $_collectionItem):?>
+            <div class="ask-question-post">
+                <div class="create-post">
+                    <?php
+                    $_createdDate = explode(" ", $_collectionItem->getUpdatedAt());
+                    @list($_year, $_date, $_month) = explode('-', $_createdDate[0]);
+                    $_today = date("d M Y", mktime(0, 0, 0, $_date, $_month, $_year));
+                    ?>
+                    <div class="cust-name"><?php echo $_collectionItem->getName(); ?></div>
+                    <div class="date"><?php echo $_today; ?></div>
+                    <div class="comment"><?php echo $_collectionItem->getQuestion(); ?></div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>

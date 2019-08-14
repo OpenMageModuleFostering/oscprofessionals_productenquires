@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * @category   Oscprofessionals
+ * @package    Oscprofessionals_ProductEnquiry
+ * @author     Oscprofessionals Team<oscpteam@oscprofessionals.com>
+ *
+ */
+-->
+<config>
+    <modules>
+        <Oscprofessionals_ProductEnquiry>
+            <version>1.0.0</version>
+        </Oscprofessionals_ProductEnquiry>
+    </modules>
+    <frontend>
+        <routers>
+            <customer>
+                <args>
+                    <modules>
+                        <Oscprofessionals_ProductEnquiry before="Mage_Customer">Oscprofessionals_ProductEnquiry</Oscprofessionals_ProductEnquiry>
+                    </modules>
+                </args>
+            </customer>
+        </routers>
+        <layout>
+            <updates>
+                <productenquiry>
+                    <file>oscprofessionals/productenquiry.xml</file>
+                </productenquiry>
+            </updates>
+        </layout>
+    </frontend>  
+    <admin>
+        <routers>
+            <productenquiry>
+                <use>admin</use>
+                <args>
+                    <module>Oscprofessionals_ProductEnquiry</module>
+                    <frontName>productenquiry</frontName>
+                </args>
+            </productenquiry>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <productenquiry>
+                    <file>oscprofessionals/productenquiry.xml</file>
+                </productenquiry>
+            </updates>
+        </layout>
+    </adminhtml>
+    <global>
+        <models>
+            <oscpproductenquiry>
+                <class>Oscprofessionals_ProductEnquiry_Model</class>
+                <resourceModel>oscpproductenquiry_resource</resourceModel>
+            </oscpproductenquiry>
+            <oscpproductenquiry_resource>
+                <class>Oscprofessionals_ProductEnquiry_Model_Resource</class>
+                <entities>
+                    <productenquiry>
+                        <table>product_enquiry</table>
+                    </productenquiry>
+                </entities>
+            </oscpproductenquiry_resource>
+        </models>
+        <resources>
+            <productenquiry_setup>
+                <setup>
+                    <module>Oscprofessionals_ProductEnquiry</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </productenquiry_setup>
+            <productenquiry_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </productenquiry_write>
+            <productenquiry_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </productenquiry_read>
+        </resources>
+        <blocks>
+            <oscpproductenquiry>
+                <class>Oscprofessionals_ProductEnquiry_Block</class>
+            </oscpproductenquiry>
+        </blocks>
+        <helpers>
+            <oscpproductenquiry>
+                <class>Oscprofessionals_ProductEnquiry_Helper</class>
+            </oscpproductenquiry>
+        </helpers>
+        <template>
+            <email>
+                <productenquiry_email_email_template translate="label" module="productenquiry">
+                    <label>Product Enquiry Form</label>
+                    <file>oscprofessionals/productenquiry.html</file>
+                    <type>html</type>
+                </productenquiry_email_email_template>
+            </email>
+        </template>
+    </global>
+    <default>
+        <productenquiry>            
+            <email>
+                <recipient_email_sendto><![CDATA[hello@example.com]]></recipient_email_sendto>
+                <sender_email_identity_sender>custom2</sender_email_identity_sender>
+                <email_template>productenquiry_email_email_template</email_template>
+                <enquiry_number>3</enquiry_number>
+            </email>
+        </productenquiry>
+    </default>
+</config>

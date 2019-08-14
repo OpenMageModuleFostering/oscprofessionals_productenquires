@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * @category   Oscprofessionals
+ * @package    Oscprofessionals_ProductEnquiry
+ * @author     Oscprofessionals Team<oscpteam@oscprofessionals.com>
+ *
+ */
+-->
+<config>
+    <modules>
+        <Oscprofessionals_ProductEnquiry>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Oscprofessionals_ProductEnquiry>
+    </modules>
+</config>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * @category   Oscprofessionals
+ * @package    Oscprofessionals_ProductEnquiry
+ * @author     Oscprofessionals Team<oscpteam@oscprofessionals.com>
+ *
+ */
+-->
+<layout version="0.1.0">
+    <productenquiry_adminhtml_productenquiry_index>
+        <reference name="content">
+            <block type="oscpproductenquiry/adminhtml_productenquiry" name="productenquiry" />
+        </reference>
+    </productenquiry_adminhtml_productenquiry_index>
+</layout>
